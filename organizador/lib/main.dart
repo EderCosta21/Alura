@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         appBar: AppBar(
+          leading: Container(),
           title: const Text(
             'Tarefas',
             textAlign: TextAlign.center,
@@ -80,34 +81,51 @@ class _TaksState extends State<_Taks> {
                             fontSize: 24, overflow: TextOverflow.ellipsis),
                       ),
                     ),
-                    ElevatedButton(
-                      onPressed: () {
-                        setState(() {
-                          nivel++;
-                        });
+                    Container(
+                      width: 50,
+                      height: 50,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          setState(() {
+                            nivel++;
+                          });
 
-                        print(nivel);
-                      },
-                      child: const Icon(Icons.arrow_drop_up),
+                          print(nivel);
+                        },
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: const [
+                            Icon(Icons.arrow_drop_up),
+                            Text(
+                              'UP',
+                              style: TextStyle(fontSize: 12),
+                            )
+                          ],
+                        ),
+                      ),
                     )
                   ],
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  SizedBox(
-                    width: 300,
-                    child: LinearProgressIndicator(
-                      color: Colors.white,
-                      value: nivel / 10,
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SizedBox(
+                      width: 300,
+                      child: LinearProgressIndicator(
+                        color: Colors.white,
+                        value: nivel / 10,
+                      ),
                     ),
-                  ),
-                  Text(
-                    'Nivel $nivel',
-                    style: TextStyle(color: Colors.white, fontSize: 16),
-                  ),
-                ],
+                    Text(
+                      'Nivel $nivel',
+                      style: const TextStyle(color: Colors.white, fontSize: 16),
+                    ),
+                  ],
+                ),
               ),
             ],
           )
