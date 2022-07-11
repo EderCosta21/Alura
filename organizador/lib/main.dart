@@ -12,56 +12,107 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text(
+            'Tarefas',
+            textAlign: TextAlign.center,
+          ),
+        ),
+        body: ListView(
+          children: const [
+            _Taks('Aprender flutter'),
+            _Taks('Andar de bike'),
+            _Taks('Meditar'),
+            _Taks('Jogar futebol'),
+            _Taks('Jogar futebol 2'),
+          ],
+        ),
+        floatingActionButton: FloatingActionButton(
+            onPressed: () {}, child: const Icon(Icons.add)),
+      ),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-  final String title;
+class _Taks extends StatefulWidget {
+  final String nome;
+  const _Taks(this.nome, {Key? key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<_Taks> createState() => _TaksState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
+class _TaksState extends State<_Taks> {
+  int nivel = 0;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
+    return Padding(
+      padding: const EdgeInsets.only(top: 8.0),
+      child: Stack(
+        children: [
+          Container(
+            color: Colors.blue,
+            height: 140,
+          ),
+          Column(
+            children: [
+              Container(
+                color: Colors.white,
+                height: 100,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      color: Colors.black26,
+                      width: 72,
+                      height: 100,
+                    ),
+                    SizedBox(
+                      width: 200,
+                      child: Text(
+                        widget.nome,
+                        style: const TextStyle(
+                            fontSize: 24, overflow: TextOverflow.ellipsis),
+                      ),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          nivel++;
+                        });
+
+                        print(nivel);
+                      },
+                      child: const Icon(Icons.arrow_drop_up),
+                    )
+                  ],
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SizedBox(
+                    width: 300,
+                    child: LinearProgressIndicator(
+                      color: Colors.white,
+                      value: nivel / 10,
+                    ),
+                  ),
+                  Text(
+                    'Nivel $nivel',
+                    style: TextStyle(color: Colors.white, fontSize: 16),
+                  ),
+                ],
+              ),
+            ],
+          )
+        ],
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
