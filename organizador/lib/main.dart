@@ -1,136 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:organizador_tarefas/screens/initialScreen.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: Scaffold(
-        appBar: AppBar(
-          leading: Container(),
-          title: const Text(
-            'Tarefas',
-            textAlign: TextAlign.center,
-          ),
+        title: 'Flutter Demo',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
         ),
-        body: ListView(
-          children: const [
-            _Taks('Aprender flutter'),
-            _Taks('Andar de bike'),
-            _Taks('Meditar'),
-            _Taks('Jogar futebol'),
-            _Taks('Jogar futebol 2'),
-          ],
-        ),
-        floatingActionButton: FloatingActionButton(
-            onPressed: () {}, child: const Icon(Icons.add)),
-      ),
-    );
-  }
-}
-
-class _Taks extends StatefulWidget {
-  final String nome;
-  const _Taks(this.nome, {Key? key});
-
-  @override
-  State<_Taks> createState() => _TaksState();
-}
-
-class _TaksState extends State<_Taks> {
-  int nivel = 0;
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 8.0),
-      child: Stack(
-        children: [
-          Container(
-            color: Colors.blue,
-            height: 140,
-          ),
-          Column(
-            children: [
-              Container(
-                color: Colors.white,
-                height: 100,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      color: Colors.black26,
-                      width: 72,
-                      height: 100,
-                    ),
-                    SizedBox(
-                      width: 200,
-                      child: Text(
-                        widget.nome,
-                        style: const TextStyle(
-                            fontSize: 24, overflow: TextOverflow.ellipsis),
-                      ),
-                    ),
-                    Container(
-                      width: 50,
-                      height: 50,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          setState(() {
-                            nivel++;
-                          });
-
-                          print(nivel);
-                        },
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: const [
-                            Icon(Icons.arrow_drop_up),
-                            Text(
-                              'UP',
-                              style: TextStyle(fontSize: 12),
-                            )
-                          ],
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SizedBox(
-                      width: 300,
-                      child: LinearProgressIndicator(
-                        color: Colors.white,
-                        value: nivel / 10,
-                      ),
-                    ),
-                    Text(
-                      'Nivel $nivel',
-                      style: const TextStyle(color: Colors.white, fontSize: 16),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          )
-        ],
-      ),
-    );
+        home: const InitialScreen());
   }
 }
