@@ -1,10 +1,11 @@
 // ignore_for_file: unnecessary_null_comparison
 
 import 'package:bank/pages/home/widgets/itemTransferencia.dart';
+import 'package:bank/pages/novaTransferencia/widget/editor.dart';
 import 'package:flutter/material.dart';
 
 class NewTransfer extends StatefulWidget {
-  NewTransfer({Key? key}) : super(key: key);
+  const NewTransfer({Key? key}) : super(key: key);
 
   @override
   State<NewTransfer> createState() => _NewTransferState();
@@ -24,33 +25,16 @@ class _NewTransferState extends State<NewTransfer> {
         padding: const EdgeInsets.only(left: 20.0, right: 20),
         child: Column(
           children: [
-            TextField(
-              controller: _contaEC,
-              style: TextStyle(
-                color: Colors.black87,
-                fontSize: 16,
-              ),
-              decoration: InputDecoration(
-                icon: Icon(Icons.account_box),
-                labelText: 'Conta',
-                hintText: '00000',
-              ),
-              keyboardType: TextInputType.number,
-              maxLength: 6,
-            ),
-            TextField(
-              controller: _valorEC,
-              style: TextStyle(
-                color: Colors.black87,
-                fontSize: 16,
-              ),
-              decoration: InputDecoration(
-                icon: Icon(Icons.monetization_on),
-                labelText: 'Valor',
-                hintText: '00.00',
-              ),
-              keyboardType: TextInputType.number,
-            ),
+            Editor(
+                controlador: _contaEC,
+                labelConta: 'Conta',
+                labelHelper: '00000',
+                icone: Icons.account_box),
+            Editor(
+                controlador: _valorEC,
+                labelConta: 'Valor',
+                labelHelper: '00.00',
+                icone: Icons.monetization_on),
             ElevatedButton(
                 onPressed: () {
                   final int numero = int.parse(_contaEC.text);
@@ -58,7 +42,8 @@ class _NewTransferState extends State<NewTransfer> {
 
                   if (numero != null && value != null) {
                     final tranfer = Transferencia(numero, value);
-                    print('$tranfer');
+
+                    debugPrint('$tranfer');
                   }
                 },
                 child: Text(
