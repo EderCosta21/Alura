@@ -1,25 +1,42 @@
+import 'package:bank/pages/novaTransferencia/newTransfer.dart';
 import 'package:flutter/material.dart';
 
 import 'itemTransferencia.dart';
 
-class ListaTransferencia extends StatelessWidget {
-  const ListaTransferencia({Key? key}) : super(key: key);
+class ListaTransferencia extends StatefulWidget {
+  final List<Transferencia> _transferencias = <Transferencia>[];
+  @override
+  State<StatefulWidget> createState() => _ListaTransferenciaState();
+}
+
+class _ListaTransferenciaState extends State<ListaTransferencia> {
+  // ignore: deprecated_member_use
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          ItemTransferencia(Transferencia(37503, 100.10)),
-          ItemTransferencia(Transferencia(37503, 100.10)),
-        ],
+      body: ListView.builder(
+        itemCount: widget._transferencias.length,
+        itemBuilder: (context, indice) {
+          final transferencia = widget._transferencias[indice];
+          return ItemTransferencia(transferencia);
+        },
       ),
       floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
         onPressed: () {
-          Navigator.of(context).pushNamed('new');
+          final Future future =
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return NewTransfer();
+          }));
+          future.then((transferenciaRecebida) {
+            if (transferenciaRecebida != null) {
+              setState(() {
+                widget._transferencias.add(transferenciaRecebida);
+              });
+            }
+          });
         },
-        tooltip: 'new transferencia',
-        child: const Icon(Icons.add),
       ),
     );
   }

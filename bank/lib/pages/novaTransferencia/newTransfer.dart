@@ -23,35 +23,40 @@ class _NewTransferState extends State<NewTransfer> {
       ),
       body: Padding(
         padding: const EdgeInsets.only(left: 20.0, right: 20),
-        child: Column(
-          children: [
-            Editor(
-                controlador: _contaEC,
-                labelConta: 'Conta',
-                labelHelper: '00000',
-                icone: Icons.account_box),
-            Editor(
-                controlador: _valorEC,
-                labelConta: 'Valor',
-                labelHelper: '00.00',
-                icone: Icons.monetization_on),
-            ElevatedButton(
-                onPressed: () {
-                  final int numero = int.parse(_contaEC.text);
-                  final double value = double.parse(_valorEC.text);
-
-                  if (numero != null && value != null) {
-                    final tranfer = Transferencia(numero, value);
-
-                    debugPrint('$tranfer');
-                  }
-                },
-                child: Text(
-                  'Salvar',
-                ))
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Editor(
+                  controlador: _contaEC,
+                  labelConta: 'Conta',
+                  labelHelper: '00000',
+                  icone: Icons.account_box),
+              Editor(
+                  controlador: _valorEC,
+                  labelConta: 'Valor',
+                  labelHelper: '00.00',
+                  icone: Icons.monetization_on),
+              ElevatedButton(
+                  onPressed: () => _criarTransferencia(context),
+                  child: Text(
+                    'Salvar',
+                  ))
+            ],
+          ),
         ),
       ),
     );
+  }
+
+  void _criarTransferencia(BuildContext context) {
+    final int numero = int.parse(_contaEC.text);
+    final double value = double.parse(_valorEC.text);
+
+    if (numero != null && value != null) {
+      final tranfer = Transferencia(numero, value);
+      debugPrint('criando a transferencia');
+      debugPrint('$tranfer');
+      Navigator.pop(context, tranfer);
+    }
   }
 }
