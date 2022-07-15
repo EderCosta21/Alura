@@ -21,18 +21,21 @@ class Editor extends StatefulWidget {
 class _EditorState extends State<Editor> {
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      controller: widget.controlador,
-      style: TextStyle(
-        color: Colors.black87,
-        fontSize: 16,
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: TextField(
+        controller: widget.controlador,
+        style: TextStyle(
+          color: Colors.black87,
+          fontSize: 16,
+        ),
+        decoration: InputDecoration(
+          icon: Icon(widget.icone),
+          labelText: widget.labelConta,
+          hintText: widget.labelHelper,
+        ),
+        keyboardType: TextInputType.number,
       ),
-      decoration: InputDecoration(
-        icon: Icon(widget.icone),
-        labelText: widget.labelConta,
-        hintText: widget.labelHelper,
-      ),
-      keyboardType: TextInputType.number,
     );
   }
 }

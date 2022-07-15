@@ -2,8 +2,10 @@ import 'package:bank/pages/home/widgets/listaTransferencia.dart';
 import 'package:bank/pages/novaTransferencia/newTransfer.dart';
 import 'package:flutter/material.dart';
 
+import 'core/ui/app_config_ui.dart';
+
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -15,10 +17,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: '',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.purple,
-      ),
+      theme: AppConfigUI.theme,
       home: const MyHomePage(title: 'Transferencias'),
+      initialRoute: '/',
       routes: {
         'new': (_) => NewTransfer(),
       },
