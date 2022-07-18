@@ -121,7 +121,8 @@ class _FormScreenState extends State<FormScreen> {
                     onPressed: () {
                       debugPrint(_nameEc.text);
                       if (_formKey.currentState!.validate()) {
-                        print('Salvar');
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('data 3')));
                       }
                     },
                     child: Text('Adicionar'),
