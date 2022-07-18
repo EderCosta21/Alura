@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:organizador_tarefas/screens/form_screen.dart';
-import 'package:organizador_tarefas/screens/initialScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,8 +16,7 @@ class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(title: Text('Novo')),
+    return MaterialApp(
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
