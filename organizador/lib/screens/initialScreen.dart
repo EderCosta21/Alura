@@ -16,11 +16,24 @@ class _InitialScreenState extends State<InitialScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Container(),
+        // leading: Container(),
         title: const Text(
           'Tarefas',
           textAlign: TextAlign.center,
         ),
+        actions: <Widget>[
+          Padding(
+              padding: EdgeInsets.only(right: 20.0),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pushNamed('/new');
+                },
+                child: Icon(
+                  Icons.add,
+                  size: 26.0,
+                ),
+              )),
+        ],
       ),
       body: AnimatedOpacity(
         opacity: opacidade ? 1 : 0,

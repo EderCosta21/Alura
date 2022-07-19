@@ -43,6 +43,7 @@ class _FormScreenState extends State<FormScreen> {
                         if (value != null && value.isEmpty) {
                           return 'Insira o nome da tarefa';
                         }
+                        return null;
                       },
                       keyboardType: TextInputType.name,
                       controller: _nameEc,
@@ -123,6 +124,8 @@ class _FormScreenState extends State<FormScreen> {
                       if (_formKey.currentState!.validate()) {
                         ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(content: Text('data 3')));
+
+                        Navigator.pop(context);
                       }
                     },
                     child: Text('Adicionar'),

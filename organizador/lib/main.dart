@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:organizador_tarefas/screens/form_screen.dart';
+import 'package:organizador_tarefas/screens/initialScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,11 +18,15 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Flutter Demo',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: const FormScreen());
+      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      routes: {
+        '/new': (context) => const FormScreen(),
+      },
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: const InitialScreen(),
+    );
   }
 }
