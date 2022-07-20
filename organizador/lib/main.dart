@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:organizador_tarefas/data/task_inherited.dart';
-import 'package:organizador_tarefas/screens/form_screen.dart';
 import 'package:organizador_tarefas/screens/initialScreen.dart';
 
 void main() {
@@ -21,9 +20,6 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
-      routes: {
-        '/new': (context) => const FormScreen(),
-      },
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),

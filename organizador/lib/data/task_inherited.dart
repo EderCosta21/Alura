@@ -1,3 +1,5 @@
+// ignore_for_file: overridden_fields
+
 import 'package:flutter/material.dart';
 
 import '../componentes/task.dart';
@@ -6,6 +8,7 @@ class TaskInherited extends InheritedWidget {
   TaskInherited({Key? key, required this.child})
       : super(key: key, child: child);
 
+  @override
   final Widget child;
 
   final List<Taks> taskList = [

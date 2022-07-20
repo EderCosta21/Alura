@@ -1,8 +1,8 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:organizador_tarefas/componentes/task.dart';
 import 'package:organizador_tarefas/data/task_inherited.dart';
+import 'package:organizador_tarefas/screens/form_screen.dart';
 
 class InitialScreen extends StatefulWidget {
   const InitialScreen({Key? key}) : super(key: key);
@@ -27,7 +27,12 @@ class _InitialScreenState extends State<InitialScreen> {
               padding: EdgeInsets.only(right: 20.0),
               child: GestureDetector(
                 onTap: () {
-                  Navigator.of(context).pushNamed('/new');
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (contextNew) => FormScreen(
+                                taskContext: context,
+                              )));
                 },
                 child: Icon(
                   Icons.add,
