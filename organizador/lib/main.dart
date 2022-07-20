@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:organizador_tarefas/data/task_inherited.dart';
 import 'package:organizador_tarefas/screens/form_screen.dart';
 import 'package:organizador_tarefas/screens/initialScreen.dart';
 
@@ -26,7 +27,9 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const InitialScreen(),
+      home: TaskInherited(
+        child: const InitialScreen(),
+      ),
     );
   }
 }
