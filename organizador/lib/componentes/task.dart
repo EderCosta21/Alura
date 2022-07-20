@@ -7,17 +7,14 @@ class Taks extends StatefulWidget {
   final String foto;
   final int level;
 
-  const Taks(
-      {required this.nome, required this.foto, required this.level, Key? key})
+  Taks({required this.nome, required this.foto, required this.level, Key? key})
       : super(key: key);
-
+  int nivel = 0;
   @override
   State<Taks> createState() => TaksState();
 }
 
 class TaksState extends State<Taks> {
-  int nivel = 0;
-
   bool assetOrNetWork() {
     if (widget.foto.contains('http')) return false;
     return true;
@@ -88,7 +85,7 @@ class TaksState extends State<Taks> {
                       child: ElevatedButton(
                         onPressed: () {
                           setState(() {
-                            nivel++;
+                            widget.nivel++;
                           });
                         },
                         child: Column(
@@ -117,11 +114,11 @@ class TaksState extends State<Taks> {
                       child: LinearProgressIndicator(
                           color: Colors.white,
                           value: (widget.level > 0)
-                              ? (nivel / widget.level) / 10
+                              ? (widget.nivel / widget.level) / 10
                               : 1),
                     ),
                     Text(
-                      'Nivel $nivel',
+                      'Nivel ${widget.nivel}',
                       style: const TextStyle(color: Colors.white, fontSize: 16),
                     ),
                   ],

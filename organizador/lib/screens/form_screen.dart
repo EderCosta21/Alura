@@ -15,6 +15,20 @@ class _FormScreenState extends State<FormScreen> {
   final TextEditingController _difficultyEc = TextEditingController();
   final TextEditingController _imageEc = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+
+  bool valueValidator(String? value) {
+    if (value != null && value.isEmpty) return true;
+    return false;
+  }
+
+  bool diffycultyValidator(String value) {
+    if (valueValidator(value) || int.parse(value) > 5 || int.parse(value) < 1) {
+      return true;
+    }
+
+    return false;
+  }
+
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
@@ -43,7 +57,7 @@ class _FormScreenState extends State<FormScreen> {
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
                       validator: (value) {
-                        if (value != null && value.isEmpty) {
+                        if (valueValidator(value)) {
                           return 'Insira o nome da tarefa';
                         }
                         return null;
@@ -62,9 +76,7 @@ class _FormScreenState extends State<FormScreen> {
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
                       validator: (value) {
-                        if (value!.isEmpty ||
-                            int.parse(value) > 5 ||
-                            int.parse(value) < 1) {
+                        if (diffycultyValidator(value!)) {
                           return 'insira uma dificuldade entre 1 e 5';
                         }
                         return null;
@@ -84,7 +96,7 @@ class _FormScreenState extends State<FormScreen> {
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
                       validator: (value) {
-                        if (value!.isEmpty) {
+                        if (valueValidator(value)) {
                           return 'insira uma URL de imagem';
                         }
                         return null;
