@@ -46,6 +46,7 @@ class _InitialScreenState extends State<InitialScreen> {
         duration: const Duration(milliseconds: 1000),
         child: ListView(
           children: TaskInherited.of(context)!.taskList,
+          padding: EdgeInsets.only(top: 8.0, bottom: 75.0),
         ),
       ),
       floatingActionButton: FloatingActionButton(

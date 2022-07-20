@@ -18,6 +18,11 @@ class Taks extends StatefulWidget {
 class TaksState extends State<Taks> {
   int nivel = 0;
 
+  bool assetOrNetWork() {
+    if (widget.foto.contains('http')) return false;
+    return true;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -51,10 +56,15 @@ class TaksState extends State<Taks> {
                       height: 100,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8),
-                        child: Image.network(
-                          widget.foto,
-                          fit: BoxFit.cover,
-                        ),
+                        child: assetOrNetWork()
+                            ? Image.asset(
+                                widget.foto,
+                                fit: BoxFit.cover,
+                              )
+                            : Image.network(
+                                widget.foto,
+                                fit: BoxFit.cover,
+                              ),
                       ),
                     ),
                     Column(
